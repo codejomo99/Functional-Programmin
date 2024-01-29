@@ -13,6 +13,11 @@ public class FunctionalAssist {
             System.out.println(customer);
         }
 
+        // 요구사항 2) 성별로 검색
+        List<Customer> result2 = service.searchCustomersByGender(Gender.Female);
+        for(Customer customer : result2){
+            System.out.println(customer);
+        }
     }
 
 
