@@ -19,7 +19,7 @@ public class Customer {
     public void setLocation(String location){ this.location = location; }
     public Gender getGender(){ return gender; }
     public void setGender(Gender gender){ this.gender = gender; }
-    public int setAge(){ return age; }
+    public int getAge(){ return age; }
     public void setAge(int age){ this.age = age; }
 
     @Override

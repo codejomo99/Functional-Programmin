@@ -1,5 +1,6 @@
 package functional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FunctionalAssist {
@@ -7,15 +8,42 @@ public class FunctionalAssist {
         CustomerService service = new CustomerService();
         initData(service);
 
-        // 요구사항 1) 지역으로 검색
-        List<Customer> result = service.searchCustomersByLocation("Seoul");
-        for(Customer customer : result){
-            System.out.println(customer);
-        }
+//        // 요구사항 1) 지역으로 검색
+//        List<Customer> result = service.searchCustomersByLocation("Seoul");
+////        for(Customer customer : result){
+////            System.out.println(customer);
+////        }
+//
+//        // 요구사항 2) 성별로 검색
+//        List<Customer> result2 = service.searchCustomersByGender(Gender.Female);
+////        for(Customer customer : result2){
+////            System.out.println(customer);
+////        }
+//
+//        // 메소드 한 번에
+//        List<Customer> result3 = service.searchCustomersBy(SearchOption.Location,"Busan");
+//        for(Customer customer : result3){
+//            System.out.println(customer);
+//        }
+        List<Customer> result;
 
-        // 요구사항 2) 성별로 검색
-        List<Customer> result2 = service.searchCustomersByGender(Gender.Female);
-        for(Customer customer : result2){
+        result = service.searchCustomers(new SearchFilter() {
+            @Override
+            public boolean isMatched(Customer customer) {
+                if(customer.getLocation().equals("Seoul")){
+                    return true;
+                }else {
+                    return false;
+                }
+            }
+        });
+
+        // 람다 적용
+        // result = service.searchCustomers(customer -> customer.getGender().equals(Gender.Female));
+
+        result = service.searchCustomers(customer -> customer.getLocation().equals("Seoul") && customer.getAge() > 25);
+
+        for(Customer customer : result){
             System.out.println(customer);
         }
     }
